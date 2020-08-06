@@ -40,11 +40,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player1 = Player("jamie", room['outside'])
+is_playing = True
 
 # Write a loop that:
-for key, val in player1.current_room:
-    print(val)
-
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
@@ -54,3 +52,42 @@ for key, val in player1.current_room:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while is_playing:
+    print(player1.current_room.name)
+    print(player1.current_room.description)
+
+    user_input = input("\nEnter a command!\n")
+
+    if user_input == "q":
+        break
+    
+    elif user_input == "n":
+        if hasattr(player1.current_room, "n_to"):
+            player1.current_room = player1.current_room.n_to
+            print(f"New location is {player1.current_room.name}")
+        else:
+            print("\nThere is nothing that way! Choose another direction\n")
+    elif user_input == "s":
+        if hasattr(player1.current_room, "s_to"):
+            player1.current_room = player1.current_room.s_to
+            print(f"New location is {player1.current_room.name}")
+        else:
+            print("\nThere is nothing that way! Choose another direction\n")
+    elif user_input == "e":
+        if hasattr(player1.current_room, "e_to"):
+            player1.current_room = player1.current_room.e_to
+            print(f"New location is {player1.current_room.name}")
+        else:
+             print("\nThere is nothing that way! Choose another direction\n")
+            
+    elif user_input == "w":
+        if hasattr(player1.current_room, "w_to"):
+            player1.current_room = player1.current_room.w_to
+            print(f"New location is {player1.current_room.name}")
+        else:
+            print("\nThere is nothing that way! Choose another direction\n")
+    
+    else:
+        print("\nEnter a valid input - n, s, e, w\n")
+
